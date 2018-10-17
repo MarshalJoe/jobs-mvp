@@ -1,47 +1,22 @@
 import os
 import boto3
 import jinja2
+import datetime as dt
 from boto3.dynamodb.conditions import Key, Attr
 
-# jobs = [
-#     {
-#         "title": "Business Systems Engineer",
-#         "timestamp": "10 days ago",
-#         "company": "ObjectRocket",
-#         "location": "Austin, TX",
-#         "salary": 0,
-#         "link":"https://objectrocket.com/careers?ref=jobs-list",
-#         "tags":["datawarehouse", "hubspot", "python"]
-#     },
-#     {
-#         "title": "Elasticsearch Engineer",
-#         "timestamp": "14 days ago",
-#         "company": "ObjectRocket",
-#         "location": "Austin, TX",
-#         "salary": 0,
-#         "link":"https://objectrocket.com/careers?ref=jobs-list",
-#         "tags":["python", "elasticsearch"]
-#     },
-#     {
-#         "title": "Customer Data Engineer",
-#         "timestamp": "18 days ago",
-#         "company": "ObjectRocket",
-#         "location": "Austin, TX",
-#         "salary": 0,
-#         "link":"https://objectrocket.com/careers?ref=jobs-list",
-#         "tags": ["suport", "mongodb"]
-#     },
-#     {
-#         "title": "Cloud Engineer",
-#         "timestamp": "30 days ago",
-#         "company": "ObjectRocket",
-#         "location": "Austin, TX",
-#         "salary": 0,
-#         "link":"https://objectrocket.com/careers?ref=jobs-list",
-#         "tags": ["aws", "docker", "go", "kubernetes"]
-#     },
+jobs = [
+    {
+        "title": "Software Engineer",
+        "timestamp": dt.datetime.now(dt.timezone.utc).isoformat(),
+        "company": "ObjectRocket",
+        "location": "Austin, TX",
+        "salary": 0,
+        "link":"http://app.jobvite.com/m?3qrH7kwu",
+        "tags":["apis", "docker", "aws",]
+    }
+]
 
-# ]
+dynamodb = boto3.resource('dynamodb', region_name='us-east-2')
 
 # print(client.list_tables())
 
@@ -73,17 +48,20 @@ from boto3.dynamodb.conditions import Key, Attr
 #     }
 # )
 
-# table = dynamodb.Table('jobs')
+
 
 # print("Table status:", table.table_status)
 
-# for job in jobs:
-#     response = table.put_item(Item=job)
-#     print("PutItem succeeded")
-#     print(response)
+
+def add_jobs(jobs):
+    table = dynamodb.Table('jobs')
+    for job in jobs:
+        response = table.put_item(Item=job)
+        print("PutItem succeeded")
+        print(response)
+
 
 def grab_jobs():
-    dynamodb = boto3.resource('dynamodb', region_name='us-east-2')
     table = dynamodb.Table('jobs')
     response = table.scan(
         FilterExpression=Attr('company').eq("ObjectRocket")
@@ -108,4 +86,5 @@ if __name__ == "__main__":
     jobs = grab_jobs()
     build(jobs)
     upload()
+    # add_jobs(jobs)
     print("Done.")
