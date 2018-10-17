@@ -15,13 +15,13 @@ def grab_jobs(company):
     )
     return response['Items']
 
-def build(jobs):
+def build_list(jobs):
     html = jinja2.Environment(loader=jinja2.FileSystemLoader(os.getcwd())).get_template("templates/job-list.html").render(jobs=jobs)
 
     with open("index.html", "w") as index_file:
         index_file.write(html)
 
-def upload(company):
+def upload_list(company):
     if not folder_exists(company):
         bucket.put_object(Key=f"{company.lower()}/")
         
@@ -38,8 +38,8 @@ def folder_exists(company):
 
 def generate_joblist(company):
     jobs = grab_jobs(company)
-    build(jobs)
-    upload(company)
+    build_list(jobs)
+    upload_list(company)
 
 if __name__ == "__main__":
     generate_joblist("Rackspace")
