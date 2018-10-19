@@ -83,7 +83,7 @@ jobs = [
         "company": "Rackspace",
         "location": "San Antonio, TX",
         "salary": 0,
-        "link":"http://app.jobvite.com/m?3DW07kwv",
+        "link":"http://app.jobvite.com/m?3lu07kwL",
         "tags":["automation", "fintech"]
     },
     {
@@ -164,7 +164,7 @@ jobs = [
         "company": "Rackspace",
         "location": "San Antonio, TX",
         "salary": 0,
-        "link":"http://app.jobvite.com/m?37207kw5",
+        "link":"http://app.jobvite.com/m?3Ev07kw5",
         "tags":["networking", "automation", "architecture"]
     },
     {
