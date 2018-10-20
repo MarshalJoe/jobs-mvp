@@ -97,25 +97,21 @@ footer a {
 		<div class="cover"></div>
 		<img id="logo" src="logo.png">
 		<div id="info">
-			<h3><a target="_blank" class="company" href="http://app.jobvite.com/m?3T307kwS">Rackspace</a></h3>
-			<address>San Antonio, TX</address>
+			<h3><a target="_blank" class="company" href="{{job['link']}}">{{job['company']}}</a></h3>
+			<address>{{job['location']}}</address>
 			<p>Help us transform managed services.</p>
 		</div>
 	</header>
 	<section class="details">
 		<strong><span class="hiring">We're Hiring</span></strong>
-		<h4><a class="job" target="_blank" href="http://app.jobvite.com/m?3T307kwS">Security Analyst</a></h4>
+		<h4><a class="job" target="_blank" href="{{job['link']}}">{{job['title']}}</a></h4>
 		<ul class="tags">
-		
-			<li>networking</li>
-		
-			<li>security</li>
-		
-			<li>pentesting</li>
-		
+		{% for tag in job['tags'] %}
+			<li>{{tag}}</li>
+		{% endfor %}
 		</ul>
 	</section>
 	<footer>
-		<a target="_blank" href="http://app.jobvite.com/m?3T307kwS">See Job Description</a>
+		<a target="_blank" href="{{job['link']}}">See Job Description</a>
 	</footer>
 </div>
