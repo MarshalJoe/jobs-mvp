@@ -23,13 +23,13 @@ def build_list(jobs):
 
 def upload_list(company):
     if not folder_exists(company):
-        bucket.put_object(Key=f"{company.lower()}/")
+        bucket.put_object(Key=f"companies/{company.lower()}/")
         
     with open('index.html', 'rb') as data:
-        bucket.put_object(Key=f"{company.lower()}/index.html", Body=data, ContentType='text/html')
+        bucket.put_object(Key=f"companies/{company.lower()}/index.html", Body=data, ContentType='text/html')
 
 def folder_exists(company):
-    key = f"{company.lower()}/" 
+    key = f"companies/{company.lower()}/" 
     objs = list(bucket.objects.filter(Prefix=key))
     if len(objs) > 0 and objs[0].key == key:
         return True
