@@ -297,5 +297,5 @@ if __name__ == "__main__":
     # jobs = grab_jobs()
     # build(jobs)
     # upload()
-    add_jobs(jobs)
+    # add_jobs(jobs)
     print("Done.")
