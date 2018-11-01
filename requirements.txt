@@ -1,2 +1,4 @@
 boto3==1.9.22
 Jinja2==2.10
+jupyter==1.0.0
+requests==2.20.0
